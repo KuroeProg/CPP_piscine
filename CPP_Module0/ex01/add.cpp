@@ -1,9 +1,5 @@
 #include "PhoneBook.hpp"
 
-Contact::Contact() {
-
-}
-
 int		check_number(const std::string &str) {
 	if (str.empty())
 		return 0;
@@ -18,28 +14,29 @@ int		check_number(const std::string &str) {
 	return 1;
 }
 
-void	Contact::add_contact()
+void	Contact::fill_contact()
 {
-	Contact contact;
+	std::string input;
 
-	std::cout << "[ADD] Contact :" << std::endl;
-	if (num_contacts > 7) {
-		std::cout << "Error : Too many contacts" << std::endl;
-		return ;
-	}
 	std::cout << "Enter first name" << std::endl;
-	std::cin >> contact.firstName;
+	std::cin >> input;
+	this->firstName = input;
+
 	std::cout << "Enter last name" << std::endl;
-	std::cin >> contact.lastName;
+	std::cin >> input;
+	this->lastName = input;
+
 	std::cout << "Enter nickname" << std::endl;
-	std::cin >> contact.nickname;
+	std::cin >> input;
+	this->nickname = input;
+
 	std::cout << "Enter number" << std::endl;
-	std::cin >> contact.phoneNumber;
-	if (!check_number(contact.phoneNumber))
+	std::cin >> input;
+	if (!check_number(input))
 		return ;
+	this->phoneNumber = input;
+	
 	std::cout << "Enter darkest secret" << std::endl;
-	std::cin >> contact.darkestSecret;
-	std::cout << "\n\n !! Your contact is created !!\n\n";
-	contact.index++ && num_contacts++;
-	std::cout << contact.index << num_contacts;
+	std::cin >> input;
+	this->darkestSecret = input;
 }

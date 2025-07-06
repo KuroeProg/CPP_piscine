@@ -18,6 +18,15 @@ public:
 	Contact();
 	static void add_contact();
 	static void	search_contact();
+	void fill_contact();
+	void setIndex(int i);
+
+	std::string getFirstName() const;
+	std::string getLastName() const;
+	std::string getNickname() const;
+	std::string getPhoneNumber() const;
+	std::string getDarkestSecret() const;
+	int getIndex() const;
 	//other functions
 };
 

@@ -6,7 +6,7 @@
 /*   By: cfiachet <cfiachet@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 12:25:08 by cfiachet          #+#    #+#             */
-/*   Updated: 2025/07/05 21:44:59 by cfiachet         ###   ########.fr       */
+/*   Updated: 2025/07/06 09:01:57 by cfiachet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,13 @@
 #include <iostream>
 #include <cstdlib>
 
-int num_contacts = 0;
 
 int	main(void)
 {
 
 	std::string option;
+	PhoneBook phonebook;
 
-	num_contacts = 0;
 	std::cout << "A W E S O M E   P H O N E   B O O K" << std::endl;
 	std::cout << "Welcome to the Awesome Phone Book !\n\n" << std::endl;
 	while (1)
@@ -30,12 +29,13 @@ int	main(void)
 		std::cout << "\nPlease, Enter an option : 'ADD/SEARCH/EXIT'" << std::endl;
 		std::cin >> option;
 		if (option == "ADD") {
-			Contact::add_contact();
+			phonebook.add_contact();
 		}
-		// else if(option == "SEARCH") {} //verifier s'il y a deja un contact d'entree
-			// search_contact();
+		else if(option == "SEARCH") { //verifier s'il y a deja un contact d'entree
+			phonebook.search_contact();
+		}
 		else if (option == "EXIT") {
-			exit(1);
+			exit(0);
 		}
 		else
 			std::cout << "Please, Select a valid option" << std::endl;

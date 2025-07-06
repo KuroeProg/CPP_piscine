@@ -6,7 +6,7 @@
 /*   By: cfiachet <cfiachet@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 16:59:43 by cfiachet          #+#    #+#             */
-/*   Updated: 2025/07/05 21:54:22 by cfiachet         ###   ########.fr       */
+/*   Updated: 2025/07/06 12:28:47 by cfiachet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 #include <iostream>
 #include "Contact.hpp"
 
-extern int num_contacts;
-
 class PhoneBook {
 private:
 	Contact contacts[8];
@@ -29,6 +27,8 @@ public:
 	PhoneBook();
 	void add_contact();
 	void search_contact();
+	void PhoneBook::display_index() const;
+	std::string PhoneBook::format_text(std::string str);
 };
 
 #endif
