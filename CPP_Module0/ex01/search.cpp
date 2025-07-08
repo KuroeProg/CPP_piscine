@@ -1,19 +1,27 @@
 #include "PhoneBook.hpp"
 
-std::string PhoneBook::format_text(std::string str)
+void	PhoneBook::display_contact()
 {
-	if (str.size() < 10)
-	//afficher le mot dans une string + le nombre d;esoace
-	if (str.size() > 9)
-	//remplacer l'index 9 par un . et copier le debut du mots
-	return (string);
+	
+}
 
+std::string PhoneBook::format_text(std::string str) const
+{
+	if (str.size() < 10) {
+		return std::string(10 - str.size(), ' ') + str;
+	}
+	else if (str.size() > 10) {
+		return (str.substr(0, 9) + ".");
+	}
+	return str;
 }
 
 void PhoneBook::display_index() const
 {
-	std::cout << "     index|first name| last name|  nickname|" << std::endl;
 
+	int option;
+
+	std::cout << "     index|first name| last name|  nickname|" << std::endl;
 	for (int i = 0; i < this->num_contacts; ++i)
 	{
 		std::cout << "         " << i << "|"
@@ -22,6 +30,13 @@ void PhoneBook::display_index() const
 		          << format_text(this->contacts[i].getNickname()) << "|"
 		          << std::endl;
 	}
+	std::cout << "Choose an index [1/8]" << std::endl;
+	while (!(option > 0 && option < 9)) {
+		std::cout << "Error : not a good index value" << std::endl;
+	}
+	display_contact(this->contact[option]);
+	//demander l'index a selectionner (prendre l'index dans le nombres de this->contact[i])
+	//une fois l'index choisi, envoye la valeur choisi dans une fonction et l'afficher dans un display contact ?
 }
 
 
