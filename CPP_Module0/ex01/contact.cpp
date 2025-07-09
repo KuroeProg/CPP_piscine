@@ -1,11 +1,12 @@
 #include "PhoneBook.hpp"
+#include "Contact.hpp"
 
 Contact::Contact() {
 
 }
 
 void	Contact::setIndex(int i) {
-	this->index = i;
+	this->index = i + 1;
 }
 
 std::string Contact::getFirstName() const {

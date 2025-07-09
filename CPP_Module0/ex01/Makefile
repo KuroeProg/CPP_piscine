@@ -3,7 +3,7 @@ NAME        := phonebook
 CXX         := g++
 CXXFLAGS    := -Wall -Wextra -Werror -std=c++98
 
-SRCS        := main.cpp add.cpp Phonebook.cpp search.cpp
+SRCS        := main.cpp add.cpp Phonebook.cpp search.cpp contact.cpp
 OBJS        := $(SRCS:.cpp=.o)
 
 # ==== Règles ====

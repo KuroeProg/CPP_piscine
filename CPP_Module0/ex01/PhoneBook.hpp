@@ -6,7 +6,7 @@
 /*   By: cfiachet <cfiachet@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 16:59:43 by cfiachet          #+#    #+#             */
-/*   Updated: 2025/07/08 08:27:42 by cfiachet         ###   ########.fr       */
+/*   Updated: 2025/07/09 22:00:26 by cfiachet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ public:
 	void search_contact();
 	void display_index() const;
 	std::string format_text(std::string str) const;
+	void setIndex(int i);
+	void display_contact(int i) const;
+
 };
 
 #endif

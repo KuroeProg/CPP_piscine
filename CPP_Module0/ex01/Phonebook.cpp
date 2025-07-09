@@ -6,7 +6,7 @@
 /*   By: cfiachet <cfiachet@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:57:54 by cfiachet          #+#    #+#             */
-/*   Updated: 2025/07/06 08:26:52 by cfiachet         ###   ########.fr       */
+/*   Updated: 2025/07/09 22:44:59 by cfiachet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ void	PhoneBook::add_contact()
 	contact.setIndex(this->num_contacts);
 
 	std::cout << "\n\n !! Your contact is created !!\n\n";
-	this->num_contacts++;
-
+	if (this->num_contacts < 8)
+		this->num_contacts++;
 }
