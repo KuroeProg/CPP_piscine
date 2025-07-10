@@ -14,7 +14,7 @@ int		check_number(const std::string &str) {
 	return 1;
 }
 
-void	Contact::fill_contact()
+int	Contact::fill_contact()
 {
 	std::string input;
 
@@ -33,10 +33,12 @@ void	Contact::fill_contact()
 	std::cout << "Enter number" << std::endl;
 	std::cin >> input;
 	if (!check_number(input))
-		return ;
+		return 1;
 	this->phoneNumber = input;
 	
 	std::cout << "Enter darkest secret" << std::endl;
 	std::cin >> input;
 	this->darkestSecret = input;
+
+	return 0;
 }

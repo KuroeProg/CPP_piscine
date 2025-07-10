@@ -28,9 +28,9 @@ void PhoneBook::display_index() const
 	int option = 0;
 
 	std::cout << "     index|first name| last name|  nickname|" << std::endl;
-	for (int i = 0; i < this->num_contacts + 1; i++)
+	for (int i = 0; i < this->num_contacts ; ++i)
 	{
-		std::cout << "         " << i + 1 << "|"
+		std::cout << "         " << i << "|"
 		          << format_text(this->contacts[i].getFirstName()) << "|"
 		          << format_text(this->contacts[i].getLastName()) << "|"
 		          << format_text(this->contacts[i].getNickname()) << "|"
@@ -38,16 +38,14 @@ void PhoneBook::display_index() const
 	}
 	std::cout << "Choose an index [1...8]" << std::endl;
 	std::cin >> option;
-	while (!(option >= 0 && option < 9)) {
+	while (!(option >= 0 && option < 8)) {
 		std::cout << "Error : not a good index value" << std::endl;
 		break ;
 	}
 	if (option <= this->num_contacts)
-		display_contact(option + 1);
+		display_contact(option);
 	else
 		std::cout << "This index does not exist" << std::endl;
-	//demander l'index a selectionner (prendre l'index dans le nombres de this->contact[i])
-	//une fois l'index choisi, envoye la valeur choisi dans une fonction et l'afficher dans un display contact ?
 }
 
 

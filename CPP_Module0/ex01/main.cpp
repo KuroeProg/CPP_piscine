@@ -6,28 +6,35 @@
 /*   By: cfiachet <cfiachet@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 12:25:08 by cfiachet          #+#    #+#             */
-/*   Updated: 2025/07/06 09:01:57 by cfiachet         ###   ########.fr       */
+/*   Updated: 2025/07/10 09:06:11 by cfiachet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // boucle principale + instance Phonebook
 #include "PhoneBook.hpp"
 #include <iostream>
-#include <cstdlib>
+// #include <cstdlib>
+#include <cstring>
+#include <cctype>
+#include <limits>
 
-
-int	main(void)
+int	main(int ac, char **av)
 {
 
 	std::string option;
 	PhoneBook phonebook;
 
+	(void)av;
+	if (ac > 1)
+		return 0;
 	std::cout << "A W E S O M E   P H O N E   B O O K" << std::endl;
 	std::cout << "Welcome to the Awesome Phone Book !\n\n" << std::endl;
 	while (1)
 	{
 		std::cout << "\nPlease, Enter an option : 'ADD/SEARCH/EXIT'" << std::endl;
-		std::cin >> option;
+		// std::cin >> option;
+		if (!(std::cin >> option))
+			return 0;
 		if (option == "ADD") {
 			phonebook.add_contact();
 		}
@@ -35,7 +42,7 @@ int	main(void)
 			phonebook.search_contact();
 		}
 		else if (option == "EXIT") {
-			exit(0);
+			return (0);
 		}
 		else
 			std::cout << "Please, Select a valid option" << std::endl;
