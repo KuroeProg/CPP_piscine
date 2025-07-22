@@ -16,8 +16,8 @@ private:
 
 public:
 	Contact();
-	static void add_contact();
-	static void	search_contact();
+	// static void add_contact();
+	// static void	search_contact();
 	int fill_contact();
 	void setIndex(int i);
 
@@ -26,17 +26,7 @@ public:
 	std::string getNickname() const;
 	std::string getPhoneNumber() const;
 	std::string getDarkestSecret() const;
-	// std::string getFirstName() const{
-	// 	return this->firstName;
-	// }
-	// std::string getLastName() const{
-	// 	return this->lastName;
-	// }
-	// std::string getNickname() const{
-	// 	return this->nickname;
-	// }
 	int getIndex() const;
-	//other functions
 };
 
 
