@@ -6,7 +6,7 @@
 /*   By: cfiachet <cfiachet@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 15:57:02 by cfiachet          #+#    #+#             */
-/*   Updated: 2025/07/22 13:11:23 by cfiachet         ###   ########.fr       */
+/*   Updated: 2025/07/22 17:42:54 by cfiachet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void randomChump(std::string name)
 {
-	Zombie a(name);
-	a.announce();
+	Zombie zomb(name);
+	zomb.announce();
 }

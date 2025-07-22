@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfiachet <cfiachet@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/14 15:57:11 by cfiachet          #+#    #+#             */
-/*   Updated: 2025/07/22 17:42:40 by cfiachet         ###   ########.fr       */
+/*   Created: 2025/07/22 23:12:28 by cfiachet          #+#    #+#             */
+/*   Updated: 2025/07/22 23:35:21 by cfiachet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-int	main() {
-	Zombie *zombie = newZombie("Arnaud");
-	zombie->announce();
-	delete zombie;
-	randomChump("Patrick");
-	randomChump("Higor");
+void	Zombie::announce() {
+	std::cout << _name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+}
+
+void	Zombie::setName(std::string name) {
+	_name = name;
+}
+
+
+Zombie::Zombie() {
 	
-	return 0;
+}
+
+Zombie::~Zombie() {
+	
 }
