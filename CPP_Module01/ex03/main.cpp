@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfiachet <cfiachet@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 23:12:28 by cfiachet          #+#    #+#             */
-/*   Updated: 2025/07/22 23:38:30 by cfiachet         ###   ########.fr       */
+/*   Created: 2025/07/24 09:36:21 by cfiachet          #+#    #+#             */
+/*   Updated: 2025/07/24 09:36:36 by cfiachet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "HumanA.hpp"
+#include "HumanB.hpp"
+#include "Weapon.hpp"
 
-void	Zombie::announce() {
-	std::cout << _name << ": BraiiiiiiinnnzzzZ..." << std::endl;
-}
-
-void	Zombie::setName(std::string name) {
-	_name = name;
-}
-
-
-Zombie::Zombie() {
+int		main() {
 	
-}
 
-Zombie::~Zombie() {
-	
 }

@@ -1,30 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfiachet <cfiachet@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/22 23:12:28 by cfiachet          #+#    #+#             */
-/*   Updated: 2025/07/22 23:38:30 by cfiachet         ###   ########.fr       */
+/*   Created: 2025/07/24 07:08:07 by cfiachet          #+#    #+#             */
+/*   Updated: 2025/07/24 07:11:26 by cfiachet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "Weapon.hpp"
 
-void	Zombie::announce() {
-	std::cout << _name << ": BraiiiiiiinnnzzzZ..." << std::endl;
-}
-
-void	Zombie::setName(std::string name) {
-	_name = name;
-}
-
-
-Zombie::Zombie() {
-	
-}
-
-Zombie::~Zombie() {
-	
+Weapon(const std::string &NewType) {
+	type = NewType;
 }
