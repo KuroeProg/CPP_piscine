@@ -1,5 +1,5 @@
 # ==== Variables ====
-NAME        := ./Zombie
+NAME        := ./unnecessary_violence
 CXX         := g++
 CXXFLAGS    := -Wall -Wextra -Werror -std=c++98
 
