@@ -10,6 +10,14 @@ Fixed::Fixed(const Fixed &copie) {
 	this->_nbr = copie.getRawBits();
 }
 
+Fixed::Fixed(int const n) {
+	this->_nbr = n << fractionnalBits;
+}
+
+Fixed::Fixed(float const f) {
+	this->_nbr = roundf(f * (1 << fractionnalBits));
+}
+
 Fixed &Fixed::operator=(const Fixed &copie) {
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &copie)
@@ -29,6 +37,14 @@ int		Fixed::getRawBits(void) const {
 
 void	Fixed::setRawBits(int const raw) {
 	this->_nbr = raw;
+}
+
+float	Fixed::toFloat(void) const {
+	return (float)_nbr / (1 << fractionnalBits);
+}
+
+int		Fixed::toInt(void) const {
+	return _nbr >> fractionnalBits;
 }
 
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed) {
