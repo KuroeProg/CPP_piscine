@@ -6,7 +6,7 @@
 /*   By: cfiachet <cfiachet@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 11:32:59 by cfiachet          #+#    #+#             */
-/*   Updated: 2025/08/18 13:33:24 by cfiachet         ###   ########.fr       */
+/*   Updated: 2025/08/18 23:40:30 by cfiachet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define FIXED_HPP
 
 #include <iostream>
-#include <cmaths>
+#include <cmath>
 
 class Fixed {
 	private:
