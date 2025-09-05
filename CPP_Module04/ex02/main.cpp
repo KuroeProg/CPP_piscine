@@ -13,29 +13,19 @@
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "WrongCat.hpp"
-#include "WrongAnimal.hpp"
+#include "Brain.hpp"
 
 int main()
 {
-	const WrongAnimal* a2 = new WrongAnimal();
-    const WrongAnimal* b2 = new WrongCat();
-
-    std::cout << a2->getType() << std::endl;
-    std::cout << b2->getType() << std::endl;
-    a2->makeSound();
-    b2->makeSound();
-
-	delete a2; delete b2;
-	const Animal* meta = new Animal();
+	// const Animal* meta = new Animal();
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
 	std::cout << j->getType() << " " << std::endl;
 	std::cout << i->getType() << " " << std::endl;
 	i->makeSound(); 
 	j->makeSound();
-	meta->makeSound();
-	delete meta;
+	// meta->makeSound();
+	// delete meta;
 	delete j;
 	delete i;
 	Dog a;
@@ -51,5 +41,22 @@ int main()
 		Dog x;
 		Dog z;
 	}
+	const int size = 4;
+	Animal* animals[size];
+	for (int i = 0; i < size / 2; i++)
+		animals[i] = new Dog();
+	for (int i = size / 2; i < size; i++)
+		animals[i] = new Cat();
+	for (int i = 0; i < size; i++)
+		delete animals[i];
+
+	Dog basic;
+	basic.setIdea(0, "Chase the LetterMan");
+	Dog copy = basic; 
+	basic.setIdea(0, "Sleeping all day long");
+	std::cout << "basic[0]: " << basic.getIdea(0) << "\n";
+	std::cout << "copy[0]: " << copy.getIdea(0) << "\n";
+
 	return 0;
+
 }
