@@ -8,8 +8,10 @@ int		check_number(const std::string &str) {
 		return 0;
 	}
 	for (size_t i = 0; i < str.size(); i++) {
-		if (!(std::isdigit(str[i])))
+		if (!(std::isdigit(str[i]))) {
+			std::cout << "invalid number" << std::endl;
 			return 0;
+		}
 	}
 	return 1;
 }
@@ -32,7 +34,7 @@ int	Contact::fill_contact()
 
 	std::cout << "Enter number" << std::endl;
 	std::cin >> input;
-	if (!check_number(input))
+	if (!check_number(input)) 
 		return 1;
 	this->phoneNumber = input;
 	

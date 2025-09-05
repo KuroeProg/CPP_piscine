@@ -18,6 +18,7 @@ void    CopyAndReplace(const std::string &filename, const std::string &s1, const
 	std::ifstream	infile(filename.c_str());
 	std::string		line;
 	std::ofstream	outfile((filename + ".replace").c_str());
+	char 			c = 0;
 	
 	if (!infile) {
 		std::cerr << "Unable to open the input file" << std::endl;
@@ -28,15 +29,16 @@ void    CopyAndReplace(const std::string &filename, const std::string &s1, const
 		infile.close();
 		return ;
 	}
-	while (std::getline(infile, line)) {
-		size_t pos = 0;
-		while ((pos = line.find(s1, pos)) != std::string::npos) {
-			line.erase(pos, s1.length());
-			line.insert(pos, s2);
-			pos += s2.length();
-		}
-		outfile << line << std::endl;
+	while (infile.get(c)) {
+		line += c;
 	}
+	size_t pos = 0;
+	while ((pos = line.find(s1, pos)) != std::string::npos) {
+		line.erase(pos, s1.length());
+		line.insert(pos, s2);
+		pos += s2.length();
+	}
+	outfile << line;
 	infile.close();
 	outfile.close();
 }
@@ -44,7 +46,7 @@ void    CopyAndReplace(const std::string &filename, const std::string &s1, const
 
 int main(int ac, char **av) {
 	if (ac != 4) {
-		std::cerr << "Wrong usage : " << av[0] << "[filename] [first string] [second string]" << std::endl;
+		std::cerr << "Wrong usage : " << av[0] << " [filename] [first string] [second string]" << std::endl;
 		return (1);
 	}
 	std::string	filename = av[1];

@@ -36,7 +36,7 @@ void PhoneBook::display_index() const
 		          << format_text(this->contacts[i].getNickname()) << "|"
 		          << std::endl;
 	}
-	std::cout << "Choose an index [1...8]" << std::endl;
+	std::cout << "Choose an index [0...7]" << std::endl;
 	std::cin >> option;
 	while (!(option >= 0 && option < 8)) {
 		std::cout << "Error : not a good index value" << std::endl;

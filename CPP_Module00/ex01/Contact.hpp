@@ -1,4 +1,3 @@
-//Declaration de la classe Contact
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 
@@ -16,8 +15,6 @@ private:
 
 public:
 	Contact();
-	// static void add_contact();
-	// static void	search_contact();
 	int fill_contact();
 	void setIndex(int i);
 
