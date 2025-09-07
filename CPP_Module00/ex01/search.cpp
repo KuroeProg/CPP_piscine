@@ -37,7 +37,8 @@ void PhoneBook::display_index() const
 		          << std::endl;
 	}
 	std::cout << "Choose an index [0...7]" << std::endl;
-	std::cin >> input;
+	std::getline(std::cin, input);
+	// std::cin >> input;
 	if (input.size() == 1 && std::isdigit(input[0]))
 		option = input[0] - '0';
 	if (option >= 0 && option < this->num_contacts)
