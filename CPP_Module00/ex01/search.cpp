@@ -24,8 +24,8 @@ std::string PhoneBook::format_text(std::string str) const
 
 void PhoneBook::display_index() const
 {
-
-	int option = 0;
+	std::string input;
+	int option = -1;
 
 	std::cout << "     index|first name| last name|  nickname|" << std::endl;
 	for (int i = 0; i < this->num_contacts ; ++i)
@@ -37,15 +37,13 @@ void PhoneBook::display_index() const
 		          << std::endl;
 	}
 	std::cout << "Choose an index [0...7]" << std::endl;
-	std::cin >> option;
-	while (!(option >= 0 && option < 8)) {
-		std::cout << "Error : not a good index value" << std::endl;
-		break ;
-	}
-	if (option <= this->num_contacts)
+	std::cin >> input;
+	if (input.size() == 1 && std::isdigit(input[0]))
+		option = input[0] - '0';
+	if (option >= 0 && option < this->num_contacts)
 		display_contact(option);
 	else
-		std::cout << "This index does not exist" << std::endl;
+		std::cout << "Error : not a good index value" << std::endl;
 }
 
 

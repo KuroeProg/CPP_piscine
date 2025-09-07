@@ -6,7 +6,7 @@
 /*   By: cfiachet <cfiachet@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:57:54 by cfiachet          #+#    #+#             */
-/*   Updated: 2025/09/05 16:46:14 by cfiachet         ###   ########.fr       */
+/*   Updated: 2025/09/07 15:49:32 by cfiachet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,26 @@ PhoneBook::PhoneBook() {
 
 void	PhoneBook::add_contact()
 {
-	if (this->num_contacts >= 8) {
-		std::cout << "Error : Too many contacts" << std::endl;
-		return ;
-	}
+	int index;
+
+	if (this->num_contacts < 8)
+		index = this->num_contacts;
+	else
+		index = this->old_contacts;		
 	int check = 0;
 
-	Contact &contact = this->contacts[this->num_contacts];
+	Contact &contact = this->contacts[index];
 
 	std::cout << "[ADD] Contact :" << std::endl;
-	std::cout << "debug : " << this->num_contacts << std::endl;
 	check = contact.fill_contact();
-	contact.setIndex(this->num_contacts);
-	this->old_contacts = this->num_contacts;
-	if (this->num_contacts < 8 && !check)
-		this->num_contacts++;
-	if (this->num_contacts != 0 && this->num_contacts - 1 == this->old_contacts)
+	contact.setIndex(index);
+	
+	if (!check) {
+		if (this->num_contacts < 8)
+			this->num_contacts++;
+		else
+			this->old_contacts = (this->old_contacts + 1) % 8;
+
 		std::cout << "\n\n !! Your contact is created !!\n\n";
+	}
 }
