@@ -22,17 +22,17 @@ int main() {
 	std::cout << angel << std::endl;
 	std::cout << error2 << std::endl;
 	try {
-		timmy.incrementGrade();
+		timmy.incrGrade();
 	} catch (std::exception &e) {
 		std::cerr << "Exception caught : "  << e.what() << std::endl;
 	}
 	try {
-		angel.decrementGrade();
+		angel.decrGrade();
 	} catch (std::exception &e) {
 		std::cerr << "Exception caught : " << e.what() << std::endl;
 	}
 	try {
-		error2.incrementGrade();
+		error2.incrGrade();
 	} catch (std::exception &e) {
 		std::cerr << "Exception caught : " << e.what() << std::endl;
 	}

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfiachet <cfiachet@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef AFORM_HPP
+# define AFORM_HPP
 
 # include <iostream>
 # include <stdexcept>
@@ -19,19 +19,19 @@
 
 class Bureaucrat;
 
-class Form {
+class AForm {
 	private: //private because it's asked in the subject
 		const		std::string _name;
 		bool		_signed; //not signed in construction
 		const int	_grToSign; // minimum grade to sign the form
 		const int	_grToExecute; // same but for the execution
-
+	
 	public:
 
-		Form(const std::string &name, int grToSign, int grToExecute);
-		Form(const Form &copy);
-		Form &operator=(const Form &other);
-		~Form();
+		AForm(const std::string &name, int grToSign, int grToExecute);
+		AForm(const AForm &copy);
+		AForm &operator=(const AForm &other);
+		~AForm();
 		
 		class GradeTooHighException : public std::exception {
 			public :
@@ -41,17 +41,24 @@ class Form {
 			public:
 				const char *what() const throw();
 		};
+		class FormNotSignedException : public std::exception {
+			public:
+				const char *what() const throw();
+		};
 
 		const	std::string &getName() const;
 		bool	checkSigned() const;
 		int		getterGradeToSign() const;
 		int		getterGradeToExecute() const;
-		void	beSigned(const Bureaucrat &b); /*_isSigned will be updated if it's possible
-									if it's not it will throw GradeTooLow/highException/ */
 
+		void	beSigned(const Bureaucrat &b); /*_isSigned will be updated if it's possible 
+									if it's not it will throw GradeTooLow/highException/ */
+		void	execute(Bureaucrat const &exec) const;
+		virtual void	actExecute(Bureaucrat const &executor) const = 0;
+        //execute form ?
 };
 
-std::ostream &operator<<(std::ostream &os, const Form &f);
+std::ostream &operator<<(std::ostream &os, const AForm &f);
 
 
 #endif

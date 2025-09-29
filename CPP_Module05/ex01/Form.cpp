@@ -22,14 +22,14 @@ static void	validateGrade(int grade) {
 }
 
 Form::Form(const std::string &name, int gradeToSign, int gradeToExecute)
-	: _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute) {
+	: _name(name), _signed(false), _grToSign(gradeToSign), _grToExecute(gradeToExecute) {
 		validateGrade(gradeToSign);
 		validateGrade(gradeToExecute);
 	}
 Form::Form(const Form &copy) : _name(copy._name),
-	_isSigned(copy._isSigned),
-	_gradeToSign(copy._gradeToSign),
-	_gradeToExecute(copy._gradeToExecute) {
+	_signed(copy._signed),
+	_grToSign(copy._grToSign),
+	_grToExecute(copy._grToExecute) {
 }
 
 /*
@@ -38,7 +38,7 @@ Form::Form(const Form &copy) : _name(copy._name),
 */
 Form &Form::operator=(const Form &other) {
 	if (this != &other)
-		this->_isSigned = other._isSigned;
+		this->_signed = other._signed;
 	return *this;
 }
 
@@ -54,9 +54,9 @@ const char* Form::GradeTooLowException::what() const throw() {
 }
 
 void	Form::beSigned(const Bureaucrat &b) {
-	if (b.getGrade() > _gradeToSign)
+	if (b.getGrade() > _grToSign)
 		throw Form::GradeTooLowException();
-	_isSigned = true;
+	_signed = true;
 }
 
 /*	Getters	*/
@@ -64,26 +64,26 @@ const std::string &Form::getName() const {
 	return _name;
 }
 
-bool Form::isSigned() const {
-	return _isSigned;
+bool Form::checkSigned() const {
+	return _signed;
 }
 
-int	Form::getGradeToSign() const {
-	return _gradeToSign;
+int	Form::getterGradeToSign() const {
+	return _grToSign;
 }
 
-int	Form::getGradeToExecute() const {
-	return _gradeToExecute;
+int	Form::getterGradeToExecute() const {
+	return _grToExecute;
 }
 
 std::ostream &operator<<(std::ostream &os, const Form &f) {
 	os << "Form \"" << f.getName() << "\", signed: ";
-	if (f.isSigned()) {
+	if (f.checkSigned()) {
 		os << "yes";
 	} else {
 		os << "no";
 	}
-	os << ", grade required to sign: " << f.getGradeToSign()
-	   << ", grade required to execute: " << f.getGradeToExecute();
+	os << ", grade required to sign: " << f.getterGradeToSign()
+	   << ", grade required to execute: " << f.getterGradeToExecute();
 	return os;
 }
