@@ -6,15 +6,15 @@
 
 class ShrubberyCreationForm : public AForm {
 	private:
-		std::string _target;
+		std::string _targ;
 	public:
         ShrubberyCreationForm();
-		ShrubberyCreationForm(const std::string &target);
+		ShrubberyCreationForm(const std::string &targ);
 		ShrubberyCreationForm(const ShrubberyCreationForm &copy);
 		ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);
 		~ShrubberyCreationForm();
-
-		void	actExecute(Bureaucrat const &executor) const override;
+	protected:
+		void	actExecute(Bureaucrat const &executor) const;
 };
 
 

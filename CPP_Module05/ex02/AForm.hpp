@@ -54,6 +54,7 @@ class AForm {
 		void	beSigned(const Bureaucrat &b); /*_isSigned will be updated if it's possible 
 									if it's not it will throw GradeTooLow/highException/ */
 		void	execute(Bureaucrat const &exec) const;
+		protected :
 		virtual void	actExecute(Bureaucrat const &executor) const = 0;
         //execute form ?
 };

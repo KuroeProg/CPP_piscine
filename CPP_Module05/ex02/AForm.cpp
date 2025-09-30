@@ -1,7 +1,7 @@
 # include "AForm.hpp"
 
 AForm::AForm(const std::string &name, int grToSign, int grToExecute) 
-: _name(name), _checkSigned(false), _grToSign(grToSign), _grToExecute(grToExecute) {
+: _name(name), _signed(false), _grToSign(grToSign), _grToExecute(grToExecute) {
     if (grToSign < 1 || grToExecute < 1)
         throw GradeTooHighException();
     if (grToExecute > 150 || grToSign > 150)
@@ -10,7 +10,7 @@ AForm::AForm(const std::string &name, int grToSign, int grToExecute)
 
 AForm::AForm(const AForm &copy)
 :   _name(copy._name), _signed(copy._signed),
-    _grToExecute(copy._grToExecute), _grToSign(copy._grToSign) {
+   _grToSign(copy._grToSign), _grToExecute(copy._grToExecute) {
 }
 
 AForm &AForm::operator=(const AForm &other) {
@@ -38,15 +38,15 @@ const	std::string &AForm::getName() const {
     return _name;
 }
 
-const bool AForm::checkSigned() const {
+bool AForm::checkSigned() const {
     return _signed;
 }
 
-const int AForm::getterGradeToSign() const {
+int AForm::getterGradeToSign() const {
     return _grToSign;
 }
 
-const int AForm::getterGradeToExecute() const {
+int AForm::getterGradeToExecute() const {
     return _grToExecute;
 }
 
@@ -61,5 +61,5 @@ void    AForm::execute(Bureaucrat const &executor) const {
         throw FormNotSignedException();
     if (executor.getGrade() > _grToExecute)
         throw GradeTooLowException();
-    actExecute(exec);
+    actExecute(executor);
 }
