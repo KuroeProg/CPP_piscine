@@ -8,60 +8,31 @@
 # include <stdexcept>
 # include <ctime>
 # include <iomanip>
+# include <algorithm>
 
-class PmergeMe {
-    private:
-        std::vector<int> _vect;
-        std::deque<int> _deq;
-        
+class PmergeMe {    
     public:
         PmergeMe();
         PmergeMe(const PmergeMe &cpy);
         PmergeMe &operator=(const PmergeMe &other);
         ~PmergeMe();
-
         void inputParser(int ac, char **av);
         void sortAndLen();
-    
+        const std::vector<int> &getVector() const;
+
     private:
+        std::vector<int> _vect;
+        std::deque<int>  _deq;
+        std::vector<size_t> jacobsthalPart(size_t n) const;
+        void fJVect(std::vector<int> &vect);
+        void fJDeq(std::deque<int> &deq);
         template <typename Tcontainer>
-        void fordJohnsonSort(Tcontainer &cont) {
-        if (cont.size() <= 1)
-            return;
-
-        Tcontainer s, l;
-        typename Tcontainer::iterator iter = cont.begin();
-        while (iter != cont.end()) {
-            typename Tcontainer::iterator next = iter;
-            ++next;
-            if (next != cont.end()) {
-                if (*iter < *next) {
-                    s.push_back(*iter);
-                    l.push_back(*next);
-                } else {
-                    s.push_back(*next);
-                    l.push_back(*iter);
-                }
-                iter = ++next;
-            } else {
-                l.push_back(*iter);
-                break;
-            }
+        void printValue(const Tcontainer &cont) const {
+            for (typename Tcontainer::const_iterator iter = cont.begin();
+                 iter != cont.end(); ++iter)
+                std::cout << *iter << " ";
+            std::cout << std::endl;
         }
-        fordJohnsonSort(l);
-
-        for (size_t i = 0; i < s.size(); ++i) {
-            typename Tcontainer::iterator pos = std::lower_bound(l.begin(), l.end(), s[i]);
-            l.insert(pos, s[i]);
-        }
-        cont = l;
-    }
-    template <typename Tcontainer>
-    void printValue(const Tcontainer &cont) const {
-        for (typename Tcontainer::const_iterator iter = cont.begin(); iter != cont.end(); ++iter)
-            std::cout << *iter << " ";
-        std::cout << std::endl;
-    }
 };
 
 #endif

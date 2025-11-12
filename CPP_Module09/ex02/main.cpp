@@ -9,6 +9,11 @@ int main(int ac, char **av) {
         PmergeMe sort;
         sort.inputParser(ac, av);
         sort.sortAndLen();
+    std::vector<int> checkSorted = sort.getVector(); 
+        if (!std::is_sorted(checkSorted.begin(), checkSorted.end())) {
+            std::cerr << "Error: vector not sorted correctly!" << std::endl;
+            return 1;
+        }
     } catch (const std::exception &e) {
         std::cerr << e.what() << std::endl;
         return (1);
