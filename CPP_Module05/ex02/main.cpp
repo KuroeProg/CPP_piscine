@@ -29,7 +29,7 @@ int main() {
         Olivi3r.executeForm(mercy);
 
     } catch (std::exception &e) {
-        std::cerr << "Exception caught: " << e.what() << std::endl;
+        std::cout << "Exception caught: " << e.what() << std::endl;
     }
     return 0;
 }

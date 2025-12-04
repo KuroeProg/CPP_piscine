@@ -13,6 +13,11 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 
+Bureaucrat::Bureaucrat()
+    : _name("default"), _grade(150)
+{
+}
+
 Bureaucrat::Bureaucrat(const std::string &name, int grade) 
 	: _name(name), _grade(grade) {
 	if (grade < 1)

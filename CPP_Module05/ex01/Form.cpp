@@ -21,6 +21,14 @@ static void	validateGrade(int grade) {
 		throw Form::GradeTooLowException();
 }
 
+Form::Form()
+    : _name("default"),
+      _signed(false),
+      _grToSign(150),
+      _grToExecute(150)
+{
+}
+
 Form::Form(const std::string &name, int gradeToSign, int gradeToExecute)
 	: _name(name), _signed(false), _grToSign(gradeToSign), _grToExecute(gradeToExecute) {
 		validateGrade(gradeToSign);

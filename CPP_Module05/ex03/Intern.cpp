@@ -33,30 +33,29 @@ AForm *Intern::addRobotomy(const std::string &target) const {
 }
 
 AForm *Intern::makeForm(const std::string &nameForm, const std::string &target) {
-
-    AForm *forms[3] = {
-        new ShrubberyCreationForm(target),
-        new RobotomyRequestForm(target),
-        new PresidentialPardonForm(target)
-    };
-
-    const std::string strings[3] = {
+    const std::string formNames[3] = {
         "shrubbery creation",
         "robotomy request",
         "presidential pardon"
     };
 
+    typedef AForm* (Intern::*FormCreator)(const std::string &target) const;
+
+    FormCreator creators[3] = {
+        &Intern::addShrubbery,
+        &Intern::addRobotomy,
+        &Intern::addPresidential
+    };
+
     for (int i = 0; i < 3; ++i) {
-        if (nameForm == strings[i]) {
-            std::cout << "Success: Intern creates " << nameForm << std::endl;
-            for (int j = 0; j < 3; ++j)
-                if (j != i) delete forms[j];
-            return forms[i];
+        if (nameForm == formNames[i]) {
+            std::cout << "Intern creates " << formNames[i] << std::endl;
+            return (this->*creators[i])(target);
         }
     }
-    std::cout << "Error: Intern wasn't enable to create " << nameForm
-        << " because it doesn't exist !" << std::endl;
-    for (int i = 0; i < 3; ++i)
-        delete forms[i];
+
+    std::cout << "Error: Intern cannot create " << nameForm
+              << " because it doesn't exist !" << std::endl;
     return NULL;
 }
+

@@ -1,4 +1,11 @@
 # include "AForm.hpp"
+AForm::AForm()
+    : _name("default"),
+      _signed(false),
+      _grToSign(150),
+      _grToExecute(150)
+{
+}
 
 AForm::AForm(const std::string &name, int grToSign, int grToExecute) 
 : _name(name), _signed(false), _grToSign(grToSign), _grToExecute(grToExecute) {

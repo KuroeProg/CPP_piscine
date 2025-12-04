@@ -49,7 +49,7 @@ int main() {
         if (form)
             delete form;
     } catch (std::exception &e) {
-        std::cerr << "Exception caught: " << e.what() << std::endl;
+        std::cout << "Exception caught: " << e.what() << std::endl;
     }
 
     

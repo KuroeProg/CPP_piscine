@@ -27,7 +27,7 @@ class AForm {
 		const int	_grToExecute; // same but for the execution
 	
 	public:
-
+		AForm();
 		AForm(const std::string &name, int grToSign, int grToExecute);
 		AForm(const AForm &copy);
 		AForm &operator=(const AForm &other);

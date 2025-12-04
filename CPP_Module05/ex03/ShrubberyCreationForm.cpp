@@ -27,7 +27,7 @@ void	ShrubberyCreationForm::actExecute(Bureaucrat const &executor) const {
     (void)executor;
     std::ofstream fd((_targ + "_shrubbery").c_str());
     if (!fd) {
-        std::cerr << "Error : Cannot open " << _targ << "_shrubbery" << std::endl;
+        std::cout << "Error : Cannot open " << _targ << "_shrubbery" << std::endl;
         return ;
     }
     fd << "        __ _.--..--._ _" << std::endl;

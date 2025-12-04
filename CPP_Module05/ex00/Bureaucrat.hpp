@@ -30,7 +30,7 @@ class Bureaucrat {
 			public :
 				const char *what() const throw();
 		};
-
+	Bureaucrat();
 	Bureaucrat(const std::string &name, int grade);
 	Bureaucrat(const Bureaucrat &copie);
 	Bureaucrat	&operator=(const Bureaucrat &other);
