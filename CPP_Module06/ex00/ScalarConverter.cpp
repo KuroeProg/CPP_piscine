@@ -17,8 +17,12 @@ void ScalarConverter::convert(std::string const &lit) {
     }
 
     std::string cleanf = lit;
-    if (cleanf.back() == 'f' && cleanf.find('.') != std::string::npos)
-        cleanf.erase(cleanf.size() - 1);
+    if (!cleanf.empty()
+        && cleanf[cleanf.size() - 1] == 'f'
+        && cleanf.find('.') != std::string::npos)
+    {
+       cleanf.erase(cleanf.size() - 1);
+    }
 
     std::stringstream flux(cleanf);
     double dnbr;

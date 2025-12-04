@@ -4,7 +4,7 @@ Serializer::Serializer() {}
 
 Serializer::Serializer(Serializer const &) {}
 
-Serializer Serializer::operator=(const Serializer &) {
+Serializer &Serializer::operator=(const Serializer &) {
     return *this;
 }
 
