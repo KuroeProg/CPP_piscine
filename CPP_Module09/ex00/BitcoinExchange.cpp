@@ -18,6 +18,13 @@ BitcoinExchange::BitcoinExchange(const std::string &databaseFile) {
     databaseCheck(databaseFile);
 }
 
+static void eraseSpaces(std::string &str) {
+    while (!str.empty() && std::isspace(static_cast<unsigned char>(str[0])))
+        str.erase(0, 1);
+    while (!str.empty() && std::isspace(static_cast<unsigned char>(str[str.size() - 1])))
+        str.erase(str.size() - 1, 1);
+}
+
 void    BitcoinExchange::databaseCheck(const std::string &dataB) {
 
     std::ifstream file(dataB.c_str());
@@ -38,14 +45,8 @@ void    BitcoinExchange::databaseCheck(const std::string &dataB) {
         std::string date = current_line.substr(0, separ);
         std::string str = current_line.substr(separ + 1);
 
-        while (!date.empty() && std::isspace(date.front()))
-            date.erase(0, 1);
-        while (!date.empty() && std::isspace(date.back()))
-            date.erase(date.size() - 1);
-        while (!str.empty() && std::isspace(str.front()))
-            str.erase(0, 1);
-        while (!str.empty() && std::isspace(str.back()))
-            str.erase(str.size() - 1);
+        eraseSpaces(date);
+        eraseSpaces(str);
         if (!checkDate(date))
             continue;
         char *end = NULL;
@@ -132,19 +133,13 @@ void    BitcoinExchange::parseInput(const std::string &inpFile) const {
         std::string date = currentLine.substr(0, separ);
         std::string str = currentLine.substr(separ + 1);
 
-        while (!date.empty() && std::isspace(date.front()))
-            date.erase(0, 1);
-        while (!date.empty() && std::isspace(date.back()))
-            date.erase(date.size() - 1);
-        while (!str.empty() && std::isspace(str.front()))
-            str.erase(0, 1);
-        while (!str.empty() && std::isspace(str.back()))
-            str.erase(str.size() - 1);
+        eraseSpaces(date);
+        eraseSpaces(str);
         if (date.empty() || str.empty()) {
             std::cerr << "Error: bad input => " << currentLine << std::endl;
             continue ;
         }
-        float val;
+        float val = 0.0f;
         if (!checkDate(date)) {
             std::cerr << "Error: bad input => " << date << std::endl;
             continue ;
