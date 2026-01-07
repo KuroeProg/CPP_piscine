@@ -1,4 +1,3 @@
-
 #include "PmergeMe.hpp"
 
 const std::vector<int> &PmergeMe::getVector() const { return _vect; }
@@ -32,27 +31,30 @@ void PmergeMe::inputParser(int ac, char **av) {
 }
 
 std::vector<size_t> PmergeMe::jacobsthalPart(size_t n) const {
-    std::vector<size_t> seq;
+    std::vector<size_t> order;
+    size_t j_prev = 1;
+    size_t j_curr = 1;
+    size_t last = 1;
+
     if (n == 0)
-        return seq;
+        return order;
 
-    seq.push_back(1);
-    size_t j1 = 1, j2 = 1;
+    order.push_back(0);
+
     while (true) {
-        size_t next = j1 + 2 * j2;
-        if (next > n)
+        size_t j_next = j_curr + 2 * j_prev;
+        if (j_next > n)
             break;
-        seq.push_back(next);
-        j2 = j1;
-        j1 = next;
+        for (size_t i = j_next; i > last; --i)
+            order.push_back(i - 1);
+        last = j_next;
+        j_prev = j_curr;
+        j_curr = j_next;
     }
+    for (size_t i = n; i > last; --i)
+        order.push_back(i - 1);
 
-    for (size_t i = seq.size(); i > 0; --i)
-        seq.push_back(seq[i - 1]);
-    for (size_t i = seq.back() + 1; i <= n; ++i)
-        seq.push_back(i);
-
-    return seq;
+    return order;
 }
 
 void PmergeMe::fJVect(std::vector<int> &vect) {
@@ -67,32 +69,27 @@ void PmergeMe::fJVect(std::vector<int> &vect) {
                 std::swap(a, b);
             s.push_back(a);
             l.push_back(b);
-        } else
+        } else {
             l.push_back(vect[i]);
+        }
     }
-    fJVect(l);
-    std::vector<size_t> jacob = jacobsthalPart(s.size());
-    std::vector<bool> inserted(s.size(), false);
 
+    fJVect(l);
+
+    if (s.empty()) {
+        vect = l;
+        return;
+    }
+
+    std::vector<size_t> jacob = jacobsthalPart(s.size());
     for (size_t i = 0; i < jacob.size(); ++i) {
-        size_t index = jacob[i] - 1;
-        if (index < s.size() && !inserted[index]) {
-            std::vector<int>::iterator pos =
-                std::lower_bound(l.begin(), l.end(), s[index]);
-            l.insert(pos, s[index]);
-            inserted[index] = true;
-        }
+        size_t index = jacob[i];
+        std::vector<int>::iterator pos = std::lower_bound(l.begin(), l.end(), s[index]);
+        l.insert(pos, s[index]);
     }
-    for (size_t i = 0; i < s.size(); ++i) {
-        if (!inserted[i]) {
-            std::vector<int>::iterator pos =
-                std::lower_bound(l.begin(), l.end(), s[i]);
-            l.insert(pos, s[i]);
-        }
-    }
+
     vect = l;
 }
-
 
 void PmergeMe::fJDeq(std::deque<int> &deq) {
     if (deq.size() <= 1)
@@ -106,31 +103,23 @@ void PmergeMe::fJDeq(std::deque<int> &deq) {
                 std::swap(a, b);
             small.push_back(a);
             large.push_back(b);
-        } else
+        } else {
             large.push_back(deq[i]);
+        }
     }
 
     fJDeq(large);
 
-    std::vector<size_t> jacob = jacobsthalPart(small.size());
-    std::vector<bool> inserted(small.size(), false);
-
-    for (size_t i = 0; i < jacob.size(); ++i) {
-        size_t index = jacob[i] - 1;
-        if (index < small.size() && !inserted[index]) {
-            std::deque<int>::iterator pos =
-                std::lower_bound(large.begin(), large.end(), small[index]);
-            large.insert(pos, small[index]);
-            inserted[index] = true;
-        }
+    if (small.empty()) {
+        deq = large;
+        return;
     }
 
-    for (size_t i = 0; i < small.size(); ++i) {
-        if (!inserted[i]) {
-            std::deque<int>::iterator pos =
-                std::lower_bound(large.begin(), large.end(), small[i]);
-            large.insert(pos, small[i]);
-        }
+    std::vector<size_t> jacob = jacobsthalPart(small.size());
+    for (size_t i = 0; i < jacob.size(); ++i) {
+        size_t index = jacob[i];
+        std::deque<int>::iterator pos = std::lower_bound(large.begin(), large.end(), small[index]);
+        large.insert(pos, small[index]);
     }
 
     deq = large;
